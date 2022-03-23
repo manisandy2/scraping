@@ -1,0 +1,39 @@
+from selenium import webdriver
+from openpyxl import Workbook,load_workbook
+import datetime
+
+date = datetime.datetime.today().strftime("%d-%m-%Y")
+date1 = datetime.datetime.today().strftime("%d-%m-%Y / %X")
+
+driver = webdriver.Chrome(executable_path=r"C:\Durai\Driver\chromedriver.exe")
+
+wb = load_workbook(r"C:\Durai\TV\Urls\Vijay Sale Tv urls.xlsx")
+ws = wb.active
+
+new_wb = Workbook()
+new_ws = new_wb.active
+
+new_ws.cell(row=1,column=1).value = date1
+l = 2
+for r in range(2,ws.max_row+1):
+    if ws.cell(row=r,column=4).value != "N/A":
+        print(r)
+
+        driver.get(ws.cell(row=r,column=4).value)
+        print(ws.cell(row=r, column=4).value)
+
+        name = driver.find_element_by_class_name("main-title")
+        print(name.text)
+        new_ws.cell(row=l,column=1).value = name.text
+
+        price = driver.find_element_by_xpath("")
+        print(price.text)
+
+        new_ws.cell(row=l,column=2).value = price.text
+        new_wb.save(r"C:\Durai\TV\Save Data\Happy Tv  "+date+".xlsx")
+        l = l+1
+
+        # prodHeading
+        / html / body / form / div[4] / div[10] / div / div[4] / div / div[3] / div[1] / div[2] / div[3] / div / span[
+            2] / span
+        wb = load_workbook(r"C:\Durai\TV\Urls\Vijay Sale Tv urls.xlsx")
